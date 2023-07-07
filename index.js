@@ -6,7 +6,7 @@ const connectToDb = require('./database/db')
 
 dotenv.config()
 
-const port = 8080
+const port = 3000
 const app = express();
 
 // middlwares
