@@ -6,13 +6,13 @@ const connectToDb = require('./database/db')
 
 dotenv.config()
 
-const port = 3000
+const port = 8080
 const app = express();
 
 // middlwares
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:5173', "*"],
+    origin: ['http://ec2-3-110-128-72.ap-south-1.compute.amazonaws.com', 'http://localhost:5173', "*"],
     methods: "GET,POST,PUT,DELETE,HEAD,DELETE",
     credentials: true,
 }));
