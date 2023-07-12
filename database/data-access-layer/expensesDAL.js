@@ -39,6 +39,15 @@ class Expense {
             throw TypeError(error);
         }
     }
+
+    async editExpense(id, obj) {
+        try {
+            let data = await Expenses.findByIdAndUpdate(id, { $set: obj }, { new: true });
+            return data;
+        } catch (error) {
+            throw TypeError(error)
+        }
+    }
 }
 
 module.exports = Expense

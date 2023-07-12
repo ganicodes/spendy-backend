@@ -38,6 +38,15 @@ class Income {
             throw TypeError(error);
         }
     }
+
+    async editIncome(id, obj) {
+        try {
+            let data = await Incomes.findByIdAndUpdate(id, { $set: obj }, { new: true });
+            return data;
+        } catch (error) {
+            throw TypeError(error)
+        }
+    }
 }
 
 module.exports = Income

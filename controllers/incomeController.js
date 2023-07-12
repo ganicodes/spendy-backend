@@ -41,5 +41,15 @@ const deleteIncome = async (req, res, next) => {
     }
 }
 
+const editIncome = async (req, res, next) => {
+    try {
+        let data = await incomeDAL.editIncome(req.query.id, req.body);
+        res.status(200).json({ success: true, message: "Income record has been updated" });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+        next(error);
+    }
+}
 
-module.exports = { getIncomeTypes, getIncomeList, insertIncome, deleteIncome }
+
+module.exports = { getIncomeTypes, getIncomeList, insertIncome, deleteIncome, editIncome }

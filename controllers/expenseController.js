@@ -41,4 +41,14 @@ const deleteExpense = async (req, res, next) => {
     }
 }
 
-module.exports = { getExpenseList, getExpenseTypes, insertExpense, deleteExpense }
+const editExpense = async (req, res, next) => {
+    try {
+        let data = await expensesDAL.editExpense(req.query.id, req.body);
+        res.status(200).json({ success: true, message: "Expense record has been updated" });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+        next(error);
+    }
+}
+
+module.exports = { getExpenseList, getExpenseTypes, insertExpense, deleteExpense, editExpense }
