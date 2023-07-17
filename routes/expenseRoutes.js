@@ -8,5 +8,6 @@ router.get("/getExpenseList", expenseController.getExpenseList);
 router.post("/insertExpense", expenseController.insertExpense);
 router.delete("/deleteExpense", expenseController.deleteExpense);
 router.put("/editExpense", expenseController.editExpense);
+router.get("/getExpenseSummary", expenseController.getExpenseSummary);
 
 module.exports = router;

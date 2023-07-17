@@ -1,7 +1,7 @@
 const Expense = require("../database/data-access-layer/expensesDAL");
 let expensesDAL = new Expense();
 
-const getExpenseList = async (req, res, next) => {
+exports.getExpenseList = async (req, res, next) => {
   try {
     let data = await expensesDAL.getExpenseList(req.query.userId);
     res.status(200).json({ success: true, data: data });
@@ -11,7 +11,7 @@ const getExpenseList = async (req, res, next) => {
   }
 };
 
-const getExpenseTypes = async (req, res, next) => {
+exports.getExpenseTypes = async (req, res, next) => {
   try {
     let data = await expensesDAL.getExpenseTypes(req.query.userId);
     res.status(200).json({ success: true, data: data });
@@ -21,7 +21,7 @@ const getExpenseTypes = async (req, res, next) => {
   }
 };
 
-const insertExpense = async (req, res, next) => {
+exports.insertExpense = async (req, res, next) => {
   try {
     let data = await expensesDAL.insertExpense(req.body);
     res
@@ -33,7 +33,7 @@ const insertExpense = async (req, res, next) => {
   }
 };
 
-const deleteExpense = async (req, res, next) => {
+exports.deleteExpense = async (req, res, next) => {
   try {
     let data = await expensesDAL.deleteExpense(req.query.id);
     res.status(200).json({
@@ -47,7 +47,7 @@ const deleteExpense = async (req, res, next) => {
   }
 };
 
-const editExpense = async (req, res, next) => {
+exports.editExpense = async (req, res, next) => {
   try {
     await expensesDAL.editExpense(req.query.id, req.body);
     res
@@ -59,10 +59,12 @@ const editExpense = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  getExpenseList,
-  getExpenseTypes,
-  insertExpense,
-  deleteExpense,
-  editExpense,
+exports.getExpenseSummary = async (req, res, next) => {
+  try {
+    let data = await expensesDAL.getExpenseSummary(req.query.userId);
+    res.status(200).json({ success: true, data: data });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+    next(error);
+  }
 };
