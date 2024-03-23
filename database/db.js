@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
-//to connect with mongodb
+// to connect with mongodb
 const connectToDb = () => {
+  // eslint-disable-next-line no-undef
   mongoose.connect(process.env.MONGO_DB);
 };
 

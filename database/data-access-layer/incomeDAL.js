@@ -3,7 +3,7 @@ const Incomes = require("../models/Income");
 const { findTotal } = require("../../helpers/CalculationHelper");
 
 class Income {
-  async getIncomeTypes() {
+  static async getIncomeTypes() {
     try {
       const data = await IncomeTypes.find();
       return data;
@@ -12,7 +12,7 @@ class Income {
     }
   }
 
-  async getIncomeList(userId) {
+  static async getIncomeList(userId) {
     try {
       const data = await Incomes.find({ userId });
       return data;
@@ -21,7 +21,7 @@ class Income {
     }
   }
 
-  async insertIncome(params) {
+  static async insertIncome(params) {
     try {
       const newRecord = new Incomes(params);
       await newRecord.save();
@@ -30,7 +30,7 @@ class Income {
     }
   }
 
-  async deleteIncome(id) {
+  static async deleteIncome(id) {
     try {
       const data = await Incomes.findByIdAndDelete(id);
       return data;
@@ -39,7 +39,7 @@ class Income {
     }
   }
 
-  async editIncome(id, obj) {
+  static async editIncome(id, obj) {
     try {
       const data = await Incomes.findByIdAndUpdate(
         id,
@@ -52,7 +52,7 @@ class Income {
     }
   }
 
-  async getIncomeSummary(userId) {
+  static async getIncomeSummary(userId) {
     const response = { income: [], totalIncome: 0 };
     // { name: "Salary", value: 400 },
     // { name: "Freelance", value: 300 },
@@ -65,6 +65,7 @@ class Income {
         // try to calculate value here
         const tempArr = incomeRecords
           ?.filter((e) => e.source === item)
+          // eslint-disable-next-line no-shadow
           .map((item) => item.amount);
 
         const tempTotal = findTotal(tempArr);

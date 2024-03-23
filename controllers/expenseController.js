@@ -1,10 +1,11 @@
 const Expense = require("../database/data-access-layer/expensesDAL");
-let expensesDAL = new Expense();
+
+const expensesDAL = new Expense();
 
 exports.getExpenseList = async (req, res, next) => {
   try {
-    let data = await expensesDAL.getExpenseList(req.query.userId);
-    res.status(200).json({ success: true, data: data });
+    const data = await expensesDAL.getExpenseList(req.query.userId);
+    res.status(200).json({ success: true, data });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
     next(error);
@@ -13,8 +14,8 @@ exports.getExpenseList = async (req, res, next) => {
 
 exports.getExpenseTypes = async (req, res, next) => {
   try {
-    let data = await expensesDAL.getExpenseTypes(req.query.userId);
-    res.status(200).json({ success: true, data: data });
+    const data = await expensesDAL.getExpenseTypes(req.query.userId);
+    res.status(200).json({ success: true, data });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
     next(error);
@@ -23,7 +24,7 @@ exports.getExpenseTypes = async (req, res, next) => {
 
 exports.insertExpense = async (req, res, next) => {
   try {
-    let data = await expensesDAL.insertExpense(req.body);
+    await expensesDAL.insertExpense(req.body);
     res
       .status(200)
       .json({ success: true, message: "New expense added successfully" });
@@ -35,11 +36,11 @@ exports.insertExpense = async (req, res, next) => {
 
 exports.deleteExpense = async (req, res, next) => {
   try {
-    let data = await expensesDAL.deleteExpense(req.query.id);
+    const data = await expensesDAL.deleteExpense(req.query.id);
     res.status(200).json({
       success: true,
       message: "Expense deleted successfully",
-      data: data,
+      data,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -61,8 +62,8 @@ exports.editExpense = async (req, res, next) => {
 
 exports.getExpenseSummary = async (req, res, next) => {
   try {
-    let data = await expensesDAL.getExpenseSummary(req.query.userId);
-    res.status(200).json({ success: true, data: data });
+    const data = await expensesDAL.getExpenseSummary(req.query.userId);
+    res.status(200).json({ success: true, data });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
     next(error);

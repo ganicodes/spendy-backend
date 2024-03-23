@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+
 const { Schema } = mongoose;
 
-//expense
+// expense
 const ExpenseSchema = new Schema(
   {
     date: {

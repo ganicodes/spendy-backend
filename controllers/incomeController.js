@@ -1,10 +1,11 @@
 const Income = require("../database/data-access-layer/incomeDAL");
-let incomeDAL = new Income();
+
+const incomeDAL = new Income();
 
 exports.getIncomeTypes = async (req, res, next) => {
   try {
-    let data = await incomeDAL.getIncomeTypes(req.query.userId);
-    res.status(200).json({ success: true, data: data });
+    const data = await incomeDAL.getIncomeTypes(req.query.userId);
+    res.status(200).json({ success: true, data });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
     next(error);
@@ -13,8 +14,8 @@ exports.getIncomeTypes = async (req, res, next) => {
 
 exports.getIncomeList = async (req, res, next) => {
   try {
-    let data = await incomeDAL.getIncomeList(req.query.userId);
-    res.status(200).json({ success: true, data: data });
+    const data = await incomeDAL.getIncomeList(req.query.userId);
+    res.status(200).json({ success: true, data });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
     next(error);
@@ -23,7 +24,7 @@ exports.getIncomeList = async (req, res, next) => {
 
 exports.insertIncome = async (req, res, next) => {
   try {
-    const data = await incomeDAL.insertIncome(req.body);
+    await incomeDAL.insertIncome(req.body);
     res
       .status(200)
       .json({ success: true, message: "New income added successfully" });
@@ -35,11 +36,11 @@ exports.insertIncome = async (req, res, next) => {
 
 exports.deleteIncome = async (req, res, next) => {
   try {
-    let data = await incomeDAL.deleteIncome(req.query.id);
+    const data = await incomeDAL.deleteIncome(req.query.id);
     res.status(200).json({
       success: true,
       message: "Income deleted successfully",
-      data: data,
+      data,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -61,8 +62,8 @@ exports.editIncome = async (req, res, next) => {
 
 exports.getIncomeSummary = async (req, res, next) => {
   try {
-    let data = await incomeDAL.getIncomeSummary(req.query.userId);
-    res.status(200).json({ success: true, data: data });
+    const data = await incomeDAL.getIncomeSummary(req.query.userId);
+    res.status(200).json({ success: true, data });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
     next(error);
